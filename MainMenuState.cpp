@@ -1,18 +1,18 @@
 #include "MainMenuState.h"
 #include "GameState.h"
 
-MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys)
+void MainMenuState::initFonts()
 {
-}
-
-MainMenuState::~MainMenuState()
-{
+	if (!this->font.loadFromFile("Fonts/Dosis-Light.ttf"))
+	{
+		throw("MainMenuState::initFonts failed to load :[ ");
+	}
 }
 
 void MainMenuState::initKeybinds()
 {
 
-	/*std::ifstream ifs("Config/GameState_Keybinds.ini");
+	std::ifstream ifs("Config/GameState_Keybinds.ini");
 
 	if (ifs.is_open())
 	{
@@ -27,26 +27,36 @@ void MainMenuState::initKeybinds()
 	}
 
 	ifs.close();
-	
 
+}
 
-	this->keybinds["ESCAPE"] = this->supportedKeys->at("ESCAPE");
-	this->keybinds["MOVE_LEFT"] = this->supportedKeys->at("A");
-	this->keybinds["MOVE_RIGHT"] = this->supportedKeys->at("D");
-	this->keybinds["MOVE_UP"] = this->supportedKeys->at("W");
-	this->keybinds["MOVE_DOWN"] = this->supportedKeys->at("S");
-	*/
+void MainMenuState::initButtons()
+{
+
 }
 
 MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys)
 	: State(window, supportedKeys)
 {
+	this->initFonts();
 	this->initKeybinds();
+	this->initButtons();
+
+	/*this->gamestate_btn = new Button(100, 100, 150, 50,
+		&this->font,"New Game",
+		sf::Color(70,70,70,200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));*/
+
+	this->background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
+	this->background.setFillColor(sf::Color::Magenta);
 }
 
 MainMenuState::~MainMenuState()
-{
-
+{	
+	auto it = this->buttons.begin();
+	for (it = this->buttons.begin();it != this->buttons.end(); ++it)
+	{
+		delete it->second;
+	}
 }
 
 void MainMenuState::endState()
@@ -58,28 +68,25 @@ void MainMenuState::updateInput(const float& dt)
 {
 	this->checkForQuit();
 
-	//Update player input 
+	//if(sf::Keyboard::isKeyPressed(sf::Keyboard::G))
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_LEFT"))))
-		this->player.move(dt, -1.f, 0.f);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_RIGHT"))))
-		this->player.move(dt, 1.f, 0.f);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_UP"))))
-		this->player.move(dt, 0.f, -1.f);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("MOVE_DOWN"))))
-		this->player.move(dt, 0.f, 1.f);
 }
 
 void MainMenuState::update(const float& dt)
 {
+	this->UpdateMousePositions();
 	this->updateInput(dt);
-	this->player.update(dt);
-
+	
+	//this->gamestate_btn->update(this->MousePosView);
+	
+	
 }
 
 void MainMenuState::render(sf::RenderTarget* target)
 {
 	if (!target)
 		target = this->window;
-	this->player.render(this->window);
+	target->draw(this->background);
+
+	//this->gamestate_btn->render(target);
 }

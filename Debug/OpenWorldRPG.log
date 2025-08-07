@@ -1,24 +1,2 @@
-﻿  Button.cpp
-  Game.cpp
-  MainMenuState.cpp
-D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp(49,78): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp(49,78): warning C4244:         with
-D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp(49,78): warning C4244:         [
-D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp(49,78): warning C4244:             T=unsigned int
-D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp(49,78): warning C4244:         ]
-D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp(49,78): warning C4244:         and
-D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp(49,78): warning C4244:         [
-D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp(49,78): warning C4244:             T=float
-D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp(49,78): warning C4244:         ]
-D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp(49,57): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp(49,57): warning C4244:         with
-D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp(49,57): warning C4244:         [
-D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp(49,57): warning C4244:             T=unsigned int
-D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp(49,57): warning C4244:         ]
-D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp(49,57): warning C4244:         and
-D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp(49,57): warning C4244:         [
-D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp(49,57): warning C4244:             T=float
-D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp(49,57): warning C4244:         ]
-  main.cpp
-  Generating Code...
+﻿  Entity.cpp
   OpenWorldRPG.vcxproj -> D:\amity\testing\2nd\OpenWorldRPG\Debug\OpenWorldRPG.exe

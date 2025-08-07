@@ -1,14 +1,16 @@
 #include "State.h"
 
-State::State(sf::RenderWindow* window, std::map<std::string, int>* supportedkeys)
+State::State(sf::RenderWindow* window, std::map<std::string, int>* supportedkeys, std::stack<State*>* states)
 {
 	this->window = window;
 	this->supportedKeys = supportedkeys;
 	this->quit = false;
+	this->states = states;
 }
 
 State::~State()
 {
+
 }
 
 const bool& State::getQuit() const
@@ -16,14 +18,12 @@ const bool& State::getQuit() const
 	return this->quit;
 }
 
-void State::checkForQuit()
+void State::endState()
 {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("ESCAPE"))))
-	{
-		this->quit = true;
-	}
-
+	this->quit = true;
 }
+
+
 
 void State::UpdateMousePositions()
 {

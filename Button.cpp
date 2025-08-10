@@ -1,29 +1,33 @@
 #include "Button.h"
 
 Button::Button(float x, float y, float width, float height,
-	sf::Font* font, std::string text,
-	sf::Color idealcolor, sf::Color hovercolor, sf::Color activecolor)
+	sf::Font* font, std::string text, unsigned character_size,
+	sf::Color text_idle_color, sf::Color text_hover_color, sf::Color text_active_color,
+	sf::Color ideal_color, sf::Color hover_color, sf::Color active_color)
 {
 	this->buttonstate = BTN_IDLE;
 
 	this->shape.setPosition(sf::Vector2f(x, y));
 	this->shape.setSize(sf::Vector2f(width, height));
+	this->shape.setFillColor(ideal_color);
 	
 	this->font = font;
 	this->text.setFont(*this->font);
 	this->text.setString(text);
 	this->text.setFillColor(sf::Color::White);
-	this->text.setCharacterSize(24);
+	this->text.setCharacterSize(character_size);
 	this->text.setPosition(
 		this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->text.getGlobalBounds().width / 2.f,
 		this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->text.getGlobalBounds().height / 2.f
 	);
 
-	this->idealcolor = idealcolor;
-	this->activecolor = activecolor;
-	this->hovercolor = hovercolor;
+	this->textidlecolor = text_idle_color;
+	this->texthovercolor = text_hover_color;
+	this->textactivecolor = text_active_color;
 
-	this->shape.setFillColor(this->idealcolor);
+	this->idealcolor = ideal_color;
+	this->activecolor = active_color;
+	this->hovercolor = hover_color;
 
 }
 
@@ -62,15 +66,19 @@ void Button::update(const sf::Vector2f mousePos)
 	{
 	case BTN_IDLE:
 		this->shape.setFillColor(this->idealcolor);
+		this->text.setFillColor(this->textidlecolor);
 		break;
 	case BTN_HOVER:
 		this->shape.setFillColor(this->hovercolor);
+		this->text.setFillColor(this->texthovercolor);
 		break;
 	case BTN_ACTIVE:
 		this->shape.setFillColor(this->activecolor);
+		this->text.setFillColor(this->textactivecolor);	
 		break;
 	default:
 		this->shape.setFillColor(sf::Color::Red);
+		this->text.setFillColor(sf::Color::Blue);
 		break;
 	}
 }

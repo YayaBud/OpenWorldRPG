@@ -2,9 +2,7 @@
 
 void Entity::initVariables()
 {
-	this->texture = NULL;
-	this->sprite = NULL;
-	this->movementSpeed = 100.f;
+	this->movementComponenet = NULL;
 }
 
 Entity::Entity()
@@ -14,45 +12,47 @@ Entity::Entity()
 
 Entity::~Entity()
 {
-	delete this->sprite;
+	delete this->movementComponenet;
 }
 
 
 //Component functions
 
-void Entity::createSprite(sf::Texture* texture)
+void Entity::setTexture(sf::Texture& texture)
 {
-	this->texture = texture;
-	this->sprite = new sf::Sprite(*this->texture);
+	this->sprite.setTexture(texture);
+}
+
+void Entity::createMovementComponent(const float maxVelocity, const float acceleration, const float deceleration)
+{
+	this->movementComponenet = new MovementComponent(this->sprite, maxVelocity,acceleration,deceleration);
 }
 
 //functions 
 
 void Entity::setPosition(const float x, float y)
 {
-	if (this->sprite)
-	{
-		this->sprite->setPosition(x,y);
-	}
+
+	this->sprite.setPosition(x, y);
 }
 
-void Entity::move(const float& dt,const float dir_x, const float dir_y)
+void Entity::move(const float dir_x, const float dir_y,const float& dt)
 {	
-	if (this->sprite) 
+	if (this->movementComponenet)
 	{
-		this->sprite->move(dir_x * movementSpeed * dt, dir_y * movementSpeed * dt);
+		this->movementComponenet->move(dir_x, dir_y, dt);
 	}
 }
 
 void Entity::update(const float& dt)
 {
-	
+	if (this->movementComponenet)
+		this->movementComponenet->update(dt);
 }
 
 void Entity::render(sf::RenderTarget* target)
 {
-	if (this->sprite)
-	{
-		target->draw(*this->sprite);
-	}
+
+	target->draw(this->sprite);
+
 }

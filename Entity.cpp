@@ -13,6 +13,7 @@ Entity::Entity()
 Entity::~Entity()
 {
 	delete this->movementComponenet;
+	delete this->animationComponent;	
 }
 
 
@@ -26,6 +27,11 @@ void Entity::setTexture(sf::Texture& texture)
 void Entity::createMovementComponent(const float maxVelocity, const float acceleration, const float deceleration)
 {
 	this->movementComponenet = new MovementComponent(this->sprite, maxVelocity,acceleration,deceleration);
+}
+
+void Entity::createAnimationComponent(sf::Sprite& sprite, sf::Texture& textureSheet)
+{
+	this->animationComponent = new AnimationComponent(sprite, textureSheet);
 }
 
 //functions 

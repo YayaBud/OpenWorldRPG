@@ -1,2 +1,10 @@
-﻿  MainMenuState.cpp
+﻿  AnimationComponent.cpp
+  Entity.cpp
+  Game.cpp
+  GameState.cpp
+  main.cpp
+  MainMenuState.cpp
+  Player.cpp
+  State.cpp
+  Generating Code...
   OpenWorldRPG.vcxproj -> D:\amity\testing\2nd\OpenWorldRPG\Debug\OpenWorldRPG.exe

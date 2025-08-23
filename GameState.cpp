@@ -20,8 +20,6 @@ void GameState::initKeybinds()
 
 	ifs.close();
 
-
-
 	/*this->keybinds["ESCAPE"] = this->supportedKeys->at("ESCAPE");
 	this->keybinds["MOVE_LEFT"] = this->supportedKeys->at("A");
 	this->keybinds["MOVE_RIGHT"] = this->supportedKeys->at("D");
@@ -33,12 +31,13 @@ void GameState::initKeybinds()
 void GameState::initTexture()
 {
 	sf::Texture temp;
-	temp.loadFromFile("Resources/Images/Sprites/Player/test.png");
-	this->textures["PLAYER_IDLE"] = temp;
+	temp.loadFromFile("Resources/Images/Sprites/Player/PLAYER_SHEET.png");
+	this->textures["PLAYER_SHEET"] = temp;
 }
+
 void GameState::initPlayers()
 {
-	this->player = new Player(0, 0, this->textures["PLAYER_IDLE"]);
+	this->player = new Player(0, 0, this->textures["PLAYER_SHEET"]);
 }
 
 //const and destu

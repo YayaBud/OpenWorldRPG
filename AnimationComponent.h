@@ -26,11 +26,12 @@ private:
 		sf::IntRect currentRect;
 		sf::IntRect endRect;
 	public:
-		Animation(sf::Sprite& sprite,sf::Texture texture_Sheet,
+		Animation(sf::Sprite& sprite,sf::Texture& texture_Sheet,
 			float animation_timer,
 			int start_frame_x, int start_frame_y, int frames_x , int frames_y ,int width , int height)
 			: sprite(sprite), textureSheet(texture_Sheet), animationTimer(animation_timer), width(width), height(height)
-		{
+		{	
+			this->timer = 0.0f;
 			this->startRect = sf::IntRect(start_frame_x * width, start_frame_y * height, width, height);
 			this->currentRect = this->startRect;
 			this->endRect = sf::IntRect(frames_x * width,frames_y * height, width, height);
@@ -41,7 +42,7 @@ private:
 		void play(const float& dt)
 		{
 			//update timer 
-			this->timer = 10.f * dt;
+			this->timer += 100.f * dt;
 			if (this->timer >= animationTimer)
 			{
 				//reset timer
@@ -71,6 +72,7 @@ private:
 	sf::Sprite& sprite;
 	sf::Texture& textureSheet;
 	std::map<std::string, Animation*> animations;
+	Animation* lastAnimation;
 
 public:
 

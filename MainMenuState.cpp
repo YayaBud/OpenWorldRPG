@@ -1,5 +1,5 @@
 #include "MainMenuState.h"
-#include "Button.h"
+
 
 void MainMenuState::initVariables()
 {
@@ -47,9 +47,7 @@ void MainMenuState::initKeybinds()
 			this->keybinds[key] = this->supportedKeys->at(key2);
 		}
 	}
-
 	ifs.close();
-
 }
 
 void MainMenuState::initButtons()
@@ -116,6 +114,11 @@ void MainMenuState::updateButtons()
 	if (this->buttons["GAME_STATE"]->isPressed())
 	{
 		this->states->push(new GameState(this->window, this->supportedKeys, this->states));
+	}
+	//editor
+	if (this->buttons["EDITOR_STATE"]->isPressed())
+	{
+		this->states->push(new EditorState(this->window, this->supportedKeys, this->states));
 	}
 	//quit the game
 	if (this->buttons["EXIT_STATE"]->isPressed())

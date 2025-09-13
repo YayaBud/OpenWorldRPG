@@ -8,5 +8,8 @@ D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\HitboxComponent.cpp;D:\amity\test
 D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\main.cpp;D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\Debug\main.obj
 D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MainMenuState.cpp;D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\Debug\MainMenuState.obj
 D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\MovementComponent.cpp;D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\Debug\MovementComponent.obj
+D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\PauseMenu.cpp;D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\Debug\PauseMenu.obj
 D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\Player.cpp;D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\Debug\Player.obj
+D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\SettingsState.cpp;D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\Debug\SettingsState.obj
 D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\State.cpp;D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\Debug\State.obj
+D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\Tile.cpp;D:\amity\testing\2nd\OpenWorldRPG\OpenWorldRPG\Debug\Tile.obj

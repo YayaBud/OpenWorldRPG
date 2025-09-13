@@ -58,7 +58,7 @@ void MainMenuState::initButtons()
 		sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
-	this->buttons["SETTINGS"] = new Button(100, 580, 150, 50,
+	this->buttons["SETTINGS_STATE"] = new Button(100, 580, 150, 50,
 		&this->font, "Settings", 50,
 		sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
@@ -82,9 +82,6 @@ MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int
 	this->initFonts(); 
 	this->initKeybinds();
 	this->initButtons();
-
-	//this->background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
-	//this->background.setFillColor(sf::Color::Magenta);
 }
 
 MainMenuState::~MainMenuState()
@@ -105,7 +102,7 @@ void MainMenuState::updateInput(const float& dt)
 }
 
 void MainMenuState::updateButtons()
-{
+{	
 	for (auto& it : this->buttons)
 	{
 		it.second->update(this->MousePosView);
@@ -114,6 +111,11 @@ void MainMenuState::updateButtons()
 	if (this->buttons["GAME_STATE"]->isPressed())
 	{
 		this->states->push(new GameState(this->window, this->supportedKeys, this->states));
+	}
+	//Settings
+	if (this->buttons["SETTINGS_STATE"]->isPressed())
+	{
+		this->states->push(new SettingsState(this->window, this->supportedKeys, this->states));
 	}
 	//editor
 	if (this->buttons["EDITOR_STATE"]->isPressed())

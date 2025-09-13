@@ -20,6 +20,7 @@ private:
 		sf::Texture& textureSheet;
 		float animationTimer;
 		float timer;
+		bool done;
 		int width;
 		int height;
 		sf::IntRect startRect;
@@ -29,7 +30,9 @@ private:
 		Animation(sf::Sprite& sprite,sf::Texture& texture_Sheet,
 			float animation_timer,
 			int start_frame_x, int start_frame_y, int frames_x , int frames_y ,int width , int height)
-			: sprite(sprite), textureSheet(texture_Sheet), animationTimer(animation_timer), width(width), height(height)
+			: sprite(sprite), textureSheet(texture_Sheet), 
+			animationTimer(animation_timer),timer(0.f),done(false),
+			width(width), height(height)
 		{	
 			this->timer = 0.0f;
 			this->startRect = sf::IntRect(start_frame_x * width, start_frame_y * height, width, height);
@@ -38,10 +41,18 @@ private:
 			this->sprite.setTexture(this->textureSheet,true);
 			this->sprite.setTextureRect(this->startRect);
 		}
-		//functions
-		void play(const float& dt)
+
+		//accessors
+		const bool& isDone() const
 		{
-			//update timer 
+			return this->done;
+		}
+
+		//functions
+		const bool& play(const float& dt)
+		{
+			//update timery
+			this->done = false;
 			this->timer += 100.f * dt;
 			if (this->timer >= animationTimer)
 			{
@@ -55,17 +66,22 @@ private:
 				}
 				else //reset
 				{
+					this->done = true;
 					this->currentRect.left = this->startRect.left;
 				}
 
 				this->sprite.setTextureRect(this->currentRect);
 			}
+			return this->done;
 		}
-		void play(const float& dt, float mod_percentage)
+
+		const bool& play(const float& dt, float mod_percentage)
 		{
 			if(mod_percentage <0.5f)
 				mod_percentage = 0.5f;
+
 			//update timer 
+			this->done = false;
 			this->timer +=  mod_percentage * 100.f * dt;
 			if (this->timer >= animationTimer) 
 			{
@@ -79,12 +95,15 @@ private:
 				}
 				else //reset
 				{
+					this-> done = true;
 					this->currentRect.left = this->startRect.left;
 				}
 
 				this->sprite.setTextureRect(this->currentRect);
 			}
+			return this->done;
 		}
+
 		void reset()
 		{
 			this->timer = this->animationTimer;
@@ -97,12 +116,15 @@ private:
 	sf::Texture& textureSheet;
 	std::map<std::string, Animation*> animations;
 	Animation* lastAnimation;
-	Animation* priortyAnimation;
+	Animation* priorityAnimation;
 
 public:
 
 	AnimationComponent(sf::Sprite& sprite,sf::Texture& texture_sheet);
 	virtual ~AnimationComponent();
+
+	//Accessors
+	const bool& isDone(const std::string key);
 
 	// Functions
 	void addAnimation(const std::string key,
@@ -110,8 +132,8 @@ public:
 		int start_frame_x, int start_frame_y, int frames_x, int frames_y, int width, int height);
 
 
-	void play(const std::string key,const float& dt, const bool priorty = false);
-	void play(const std::string key, const float& dt, const float& modifier, const float& modifier_max,const bool priorty = false);
+	const bool& play(const std::string key,const float& dt, const bool priority = false);
+	const bool& play(const std::string key, const float& dt, const float& modifier, const float& modifier_max,const bool priority = false);
 };
 #endif
 
